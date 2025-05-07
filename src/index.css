@@ -122,4 +122,15 @@
       color: var(--accent-foreground) !important;
     }
 
+    /* Hide scrollbars on mobile devices for a cleaner look */
+    @media (max-width: 640px) {
+      * {
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE 10+ */
+      }
+      *::-webkit-scrollbar {
+        display: none !important; /* Chrome, Safari, Opera */
+      }
+    }
+
   
