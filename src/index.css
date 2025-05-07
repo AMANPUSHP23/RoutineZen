@@ -1,0 +1,125 @@
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer base {
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 224 71.4% 4.1%;
+        --card: 0 0% 100%;
+        --card-foreground: 224 71.4% 4.1%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 224 71.4% 4.1%;
+        --primary: 262.1 83.3% 57.8%; /* Vibrant Purple */
+        --primary-foreground: 355.7 100% 97.3%;
+        --secondary: 220 14.3% 95.9%; /* Light Grayish Blue */
+        --secondary-foreground: 220.9 39.3% 11%;
+        --muted: 220 14.3% 95.9%;
+        --muted-foreground: 220 8.9% 46.1%;
+        --accent: 300, 70%, 85%; /* Soft Pink/Lavender */
+        --accent-foreground: 220.9 39.3% 11%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 355.7 100% 97.3%;
+        --border: 220 13% 91%;
+        --input: 220 13% 91%;
+        --ring: 262.1 83.3% 57.8%;
+        --radius: 0.75rem;
+
+        --background-input: hsl(var(--muted));
+        --foreground-input: hsl(var(--foreground));
+        --border-input: hsl(var(--border));
+        --background-popover: hsl(var(--popover));
+      }
+
+      .dark {
+        --background: 224 71.4% 4.1%;
+        --foreground: 355.7 100% 97.3%;
+        --card: 224 71.4% 4.1%;
+        --card-foreground: 355.7 100% 97.3%;
+        --popover: 224 71.4% 4.1%;
+        --popover-foreground: 355.7 100% 97.3%;
+        --primary: 262.1 83.3% 57.8%;
+        --primary-foreground: 355.7 100% 97.3%;
+        --secondary: 215 27.9% 16.9%;
+        --secondary-foreground: 355.7 100% 97.3%;
+        --muted: 215 27.9% 16.9%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 215 27.9% 16.9%;
+        --accent-foreground: 355.7 100% 97.3%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 355.7 100% 97.3%;
+        --border: 215 27.9% 16.9%;
+        --input: 215 27.9% 16.9%;
+        --ring: 262.1 83.3% 57.8%;
+
+        --background-input: hsl(var(--secondary));
+        --foreground-input: hsl(var(--secondary-foreground));
+        --border-input: hsl(var(--border));
+        --background-popover: hsl(var(--secondary));
+      }
+    }
+
+    @layer base {
+      * {
+        @apply border-border;
+      }
+      body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+      }
+    }
+
+    .gradient-bg {
+      @apply bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400;
+    }
+    
+    .glassmorphism-card {
+      @apply bg-white/30 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg;
+    }
+
+    .neumorphism-button {
+      @apply rounded-lg shadow-[5px_5px_10px_#bcbcbc,-5px_-5px_10px_#ffffff] hover:shadow-[inset_5px_5px_10px_#bcbcbc,inset_-5px_-5px_10px_#ffffff];
+    }
+    .dark .neumorphism-button {
+       @apply shadow-[5px_5px_10px_#1a1a1a,-5px_-5px_10px_#2c2c2c] hover:shadow-[inset_5px_5px_10px_#1a1a1a,inset_-5px_-5px_10px_#2c2c2c];
+    }
+
+    /* React Select Dark Mode Styles */
+    .react-select__control {
+      background-color: var(--background-input) !important;
+      border-color: var(--border-input) !important;
+    }
+    .react-select__control--is-focused {
+      border-color: var(--ring) !important;
+      box-shadow: 0 0 0 1px var(--ring) !important;
+    }
+    .react-select__single-value {
+      color: var(--foreground-input) !important;
+    }
+    .react-select__input-container {
+       color: var(--foreground-input) !important;
+    }
+    .react-select__placeholder {
+      color: var(--muted-foreground) !important;
+    }
+    .react-select__menu {
+      background-color: var(--background-popover) !important;
+      z-index: 9999 !important;
+    }
+    .react-select__option {
+      background-color: var(--background-popover) !important;
+      color: var(--popover-foreground) !important;
+      display: flex;
+      align-items: center;
+    }
+    .react-select__option--is-selected {
+      background-color: var(--primary) !important;
+      color: var(--primary-foreground) !important;
+    }
+    .react-select__option--is-focused {
+      background-color: var(--accent) !important;
+      color: var(--accent-foreground) !important;
+    }
+
+  
