@@ -94,19 +94,19 @@ const MoodProductivityChart = ({ tasks, moodLog }) => {
   // Premium, scrollable, accessible legend
   const CustomLegend = () => (
     <div
-      className="flex gap-3 justify-center mt-6 pb-2 w-full max-w-3xl mx-auto px-2"
-      style={{
-        overflowX: 'auto',
-        flexWrap: window.innerWidth >= 640 ? 'wrap' : 'nowrap',
-        scrollbarWidth: 'thin',
-      }}
+      className="flex gap-3 justify-center mt-6 pb-2 w-full max-w-3xl mx-auto px-4 sm:px-2 overflow-x-auto scrollbar-none"
+      style={{ WebkitOverflowScrolling: 'touch' }}
       role="list"
       aria-label="Mood legend"
     >
-      {Object.keys(MOOD_EMOJIS).map(mood => (
+      {Object.keys(MOOD_EMOJIS).map((mood, idx, arr) => (
         <span
           key={mood}
-          className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-semibold border shadow border-slate-700/60 bg-slate-900/80 hover:scale-105 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-purple-400 min-w-[90px]"
+          className={
+            `flex items-center gap-2 py-2 rounded-full text-base font-semibold border shadow border-slate-700/60 bg-slate-900/80 hover:scale-105 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-purple-400 min-w-[90px] sm:min-w-[90px] px-4 ` +
+            (idx === 0 ? 'ml-2 sm:ml-0' : '') +
+            (idx === arr.length - 1 ? 'mr-2 sm:mr-0' : '')
+          }
           style={{ color: MOOD_COLORS[mood], borderColor: MOOD_COLORS[mood] + '99' }}
           tabIndex={0}
           role="listitem"

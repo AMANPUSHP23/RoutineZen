@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info, X, Github, Linkedin, Globe, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,16 @@ import {
 
 const ModuleInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [animateIcon, setAnimateIcon] = useState(false);
+
+  // One-time animation on first site open (per session)
+  useEffect(() => {
+    if (!sessionStorage.getItem('moduleInfoIconAnimated')) {
+      setAnimateIcon(true);
+      sessionStorage.setItem('moduleInfoIconAnimated', 'true');
+      setTimeout(() => setAnimateIcon(false), 1200); // Animation duration
+    }
+  }, []);
 
   const modules = [
     {
@@ -37,14 +47,19 @@ const ModuleInfo = () => {
 
   return (
     <div className="fixed z-[60] right-4 bottom-4 sm:top-20 sm:right-4 sm:bottom-auto">
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => setIsOpen(!isOpen)}
-        className="bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 w-14 h-14 sm:w-10 sm:h-10"
+      <motion.div
+        animate={animateIcon ? { scale: [1, 1.25, 0.95, 1.1, 1], rotate: [0, 8, -8, 0] } : {}}
+        transition={{ duration: 1, times: [0, 0.2, 0.5, 0.8, 1], ease: 'easeInOut' }}
       >
-        <Info className="w-7 h-7 sm:w-5 sm:h-5" />
-      </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsOpen(!isOpen)}
+          className="bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 w-14 h-14 sm:w-10 sm:h-10"
+        >
+          <Info className="w-7 h-7 sm:w-5 sm:h-5" />
+        </Button>
+      </motion.div>
 
       <AnimatePresence>
         {isOpen && (

@@ -443,14 +443,22 @@ const TaskForm = ({ onSubmit, taskToEdit, onFormClose, tasks = [] }) => {
               <Button type="submit" size="sm" className="bg-purple-500 text-white px-3 py-1 rounded-md">Add</Button>
             </form>
           </div>
-          <DialogFooter>
+          <div className="flex flex-col sm:flex-row gap-3 mt-4">
             <DialogClose asChild>
-              <Button type="button" variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-700">Cancel</Button>
+              <Button
+                type="button"
+                className="w-full sm:w-auto bg-slate-200 text-slate-700 hover:bg-slate-300 font-semibold border border-slate-300 shadow-none"
+              >
+                Cancel
+              </Button>
             </DialogClose>
-            <Button type="submit" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white">
+            <Button
+              type="submit"
+              className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold"
+            >
               {taskToEdit ? 'Save Changes' : 'Add Task'}
             </Button>
-          </DialogFooter>
+          </div>
         </form>
       </DialogContent>
       <Dialog open={manageOpen} onOpenChange={setManageOpen}>
