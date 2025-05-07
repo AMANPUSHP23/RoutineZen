@@ -97,11 +97,11 @@ const StatsPage = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-8"
+      className="space-y-8 px-2 sm:px-4 md:px-8 w-full max-w-full"
     >
       <div className="flex justify-end mb-4">
         <button
-          className="px-4 py-2 rounded-full bg-purple-700 text-white font-semibold shadow hover:bg-purple-800 transition"
+          className="px-4 py-2 rounded-full bg-purple-700 text-white font-semibold shadow hover:bg-purple-800 transition w-full sm:w-auto"
           onClick={() => setCustomizeOpen(true)}
         >
           Customize Dashboard
@@ -109,8 +109,8 @@ const StatsPage = () => {
       </div>
       {/* Customize Modal */}
       {customizeOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-slate-900 rounded-2xl shadow-2xl p-8 w-full max-w-md border border-purple-700/40">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-2">
+          <div className="bg-slate-900 rounded-2xl shadow-2xl p-4 sm:p-8 w-full max-w-md border border-purple-700/40 overflow-y-auto max-h-[90vh]">
             <h2 className="text-2xl font-bold text-purple-200 mb-4">Customize Dashboard</h2>
             <p className="text-slate-400 mb-4">Show, hide, and reorder your analytics widgets.</p>
             <Reorder.Group axis="y" values={widgetPrefs.order} onReorder={newOrder => setWidgetPrefs(p => ({ ...p, order: newOrder }))} className="space-y-3 mb-6">
@@ -143,7 +143,7 @@ const StatsPage = () => {
         </div>
       )}
       {/* Rendered widgets */}
-      <div className="space-y-8">
+      <div className="space-y-8 w-full max-w-full">
         {renderedWidgets}
       </div>
     </motion.div>

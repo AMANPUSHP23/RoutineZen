@@ -93,12 +93,21 @@ const MoodProductivityChart = ({ tasks, moodLog }) => {
 
   // Premium, scrollable, accessible legend
   const CustomLegend = () => (
-    <div className="flex flex-nowrap gap-3 justify-center mt-6 overflow-x-auto pb-2" role="list" aria-label="Mood legend">
+    <div
+      className="flex gap-3 justify-center mt-6 pb-2 w-full max-w-3xl mx-auto px-2"
+      style={{
+        overflowX: 'auto',
+        flexWrap: window.innerWidth >= 640 ? 'wrap' : 'nowrap',
+        scrollbarWidth: 'thin',
+      }}
+      role="list"
+      aria-label="Mood legend"
+    >
       {Object.keys(MOOD_EMOJIS).map(mood => (
         <span
           key={mood}
-          className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-semibold border shadow border-slate-700/60 bg-slate-900/80 hover:scale-105 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-purple-400"
-          style={{ color: MOOD_COLORS[mood], borderColor: MOOD_COLORS[mood] + '99', minWidth: 90 }}
+          className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-semibold border shadow border-slate-700/60 bg-slate-900/80 hover:scale-105 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-purple-400 min-w-[90px]"
+          style={{ color: MOOD_COLORS[mood], borderColor: MOOD_COLORS[mood] + '99' }}
           tabIndex={0}
           role="listitem"
           aria-label={mood}
@@ -111,7 +120,7 @@ const MoodProductivityChart = ({ tasks, moodLog }) => {
   );
 
   return (
-    <Card className="bg-gradient-to-br from-slate-800 via-purple-900 to-slate-900 text-gray-100 border-slate-700/40 rounded-3xl shadow-2xl p-2 md:p-6" style={{ boxShadow: '0 8px 32px 0 rgba(80,0,120,0.18), 0 1.5px 8px 0 #a855f7' }}>
+    <Card className="bg-gradient-to-br from-slate-800 via-purple-900 to-slate-900 text-gray-100 border-slate-700/40 rounded-3xl shadow-2xl p-2 sm:p-4 md:p-6 w-full max-w-full" style={{ boxShadow: '0 8px 32px 0 rgba(80,0,120,0.18), 0 1.5px 8px 0 #a855f7' }}>
       <CardHeader>
         <CardTitle className="text-3xl font-extrabold tracking-tight flex items-center gap-3">
           <span className="inline-block w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center shadow-lg text-2xl">📈</span>
@@ -120,70 +129,72 @@ const MoodProductivityChart = ({ tasks, moodLog }) => {
         <CardDescription className="text-slate-300 text-lg mt-1">Correlation between your mood and tasks completed.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={370}>
-          <LineChart data={moodChartData} margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.18} stroke="#a855f7" />
-            <XAxis 
-              dataKey="date" 
-              tick={{ fill: '#e0e7ff', fontWeight: 600 }} 
-              axisLine={{ stroke: '#a855f7' }} 
-            />
-            <YAxis 
-              yAxisId="left" 
-              tick={{ fill: '#e0e7ff', fontWeight: 600 }} 
-              axisLine={{ stroke: '#a855f7' }} 
-              label={{ 
-                value: 'Tasks Completed', 
-                angle: -90, 
-                position: 'insideLeft', 
-                fill: '#a855f7', 
-                style: { textAnchor: 'middle', fontWeight: 700 } 
-              }} 
-            />
-            <YAxis 
-              yAxisId="right" 
-              orientation="right" 
-              tick={{ fill: '#e0e7ff', fontWeight: 600 }} 
-              axisLine={{ stroke: '#a855f7' }} 
-              label={{ 
-                value: 'Mood Level', 
-                angle: 90, 
-                position: 'insideRight', 
-                fill: '#a855f7', 
-                style: { textAnchor: 'middle', fontWeight: 700 } 
-              }}
-              domain={[0, 5]}
-              ticks={[1, 2, 3, 4, 5]}
-            />
-            <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#a855f7', strokeWidth: 2, opacity: 0.2 }} />
-            <Line
-              yAxisId="left"
-              type="monotone"
-              dataKey="tasksCompleted"
-              name="Tasks Completed"
-              stroke="#82ca9d"
-              strokeWidth={3}
-              dot={{ r: 6, fill: '#82ca9d' }}
-              activeDot={{ r: 9, fill: '#a855f7' }}
-              isAnimationActive={true}
-              animationDuration={1200}
-              animationEasing="ease-out"
-            />
-            <Line
-              yAxisId="right"
-              type="monotone"
-              dataKey="moodValue"
-              name="Mood"
-              stroke="#8884d8"
-              strokeWidth={3}
-              dot={MoodDot}
-              activeDot={MoodDot}
-              isAnimationActive={true}
-              animationDuration={1200}
-              animationEasing="ease-out"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <div className="w-full min-w-0 overflow-x-auto">
+          <ResponsiveContainer width="100%" height={370}>
+            <LineChart data={moodChartData} margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.18} stroke="#a855f7" />
+              <XAxis 
+                dataKey="date" 
+                tick={{ fill: '#e0e7ff', fontWeight: 600 }} 
+                axisLine={{ stroke: '#a855f7' }} 
+              />
+              <YAxis 
+                yAxisId="left" 
+                tick={{ fill: '#e0e7ff', fontWeight: 600 }} 
+                axisLine={{ stroke: '#a855f7' }} 
+                label={{ 
+                  value: 'Tasks Completed', 
+                  angle: -90, 
+                  position: 'insideLeft', 
+                  fill: '#a855f7', 
+                  style: { textAnchor: 'middle', fontWeight: 700 } 
+                }} 
+              />
+              <YAxis 
+                yAxisId="right" 
+                orientation="right" 
+                tick={{ fill: '#e0e7ff', fontWeight: 600 }} 
+                axisLine={{ stroke: '#a855f7' }} 
+                label={{ 
+                  value: 'Mood Level', 
+                  angle: 90, 
+                  position: 'insideRight', 
+                  fill: '#a855f7', 
+                  style: { textAnchor: 'middle', fontWeight: 700 } 
+                }}
+                domain={[0, 5]}
+                ticks={[1, 2, 3, 4, 5]}
+              />
+              <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#a855f7', strokeWidth: 2, opacity: 0.2 }} />
+              <Line
+                yAxisId="left"
+                type="monotone"
+                dataKey="tasksCompleted"
+                name="Tasks Completed"
+                stroke="#82ca9d"
+                strokeWidth={3}
+                dot={{ r: 6, fill: '#82ca9d' }}
+                activeDot={{ r: 9, fill: '#a855f7' }}
+                isAnimationActive={true}
+                animationDuration={1200}
+                animationEasing="ease-out"
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="moodValue"
+                name="Mood"
+                stroke="#8884d8"
+                strokeWidth={3}
+                dot={MoodDot}
+                activeDot={MoodDot}
+                isAnimationActive={true}
+                animationDuration={1200}
+                animationEasing="ease-out"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
         <CustomLegend />
       </CardContent>
     </Card>

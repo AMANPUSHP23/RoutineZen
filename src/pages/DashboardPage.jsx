@@ -284,11 +284,11 @@ const DashboardPage = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="space-y-6 sm:space-y-8 px-2 sm:px-4 md:px-8 w-full"
+          className="space-y-6 sm:space-y-8 px-2 sm:px-4 md:px-8 w-full max-w-full"
         >
           <Card className="w-full bg-slate-800/60 border-slate-700/40 backdrop-blur-md shadow-2xl overflow-hidden">
             <CardHeader className="p-4 sm:p-6 bg-gradient-to-r from-purple-600/80 via-pink-600/80 to-orange-500/80">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 w-full">
                 <div>
                   <CardTitle className="text-2xl sm:text-3xl font-bold text-white">
                     {getGreeting()}, User!
@@ -301,12 +301,12 @@ const DashboardPage = () => {
               </div>
             </CardHeader>
             <CardContent className="p-4 sm:p-6">
-              <div className="flex flex-col sm:flex-row justify-between items-center mb-2 gap-2">
+              <div className="flex flex-col sm:flex-row justify-between items-center mb-2 gap-2 w-full">
                 <h3 className="text-base sm:text-lg font-medium text-gray-200">Daily Progress</h3>
                 <span className="text-sm font-semibold text-purple-300">{Math.round(completionPercentage)}% Complete</span>
               </div>
               <Progress value={completionPercentage} className="w-full h-3 bg-slate-700 [&>div]:bg-gradient-to-r [&>div]:from-pink-500 [&>div]:to-orange-400" />
-              <div className="mt-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+              <div className="mt-4 flex flex-col sm:flex-row justify-between items-center gap-2 w-full">
                  <h3 className="text-base sm:text-lg font-medium text-gray-200">Points Earned</h3>
                  <span className="text-lg font-bold text-yellow-400 flex items-center">
                     <Award className="w-5 h-5 mr-1" /> {userPoints}
@@ -347,8 +347,8 @@ const DashboardPage = () => {
               </div>
             </CardContent>
           </Card>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
-            <div className="md:col-span-2 space-y-6 sm:space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-full">
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8 min-w-0">
               <motion.div initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {CATEGORIES.map(category => (
@@ -415,7 +415,7 @@ const DashboardPage = () => {
                 </div>
               </motion.div>
             </div>
-            <div className="space-y-6 sm:space-y-8 relative z-0 w-full">
+            <div className="space-y-6 sm:space-y-8 relative z-0 w-full min-w-0">
               <div>
                 <QuoteOfTheDay />
               </div>
