@@ -321,7 +321,7 @@ const TaskForm = ({ onSubmit, taskToEdit, onFormClose, tasks = [] }) => {
           </motion.div>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-slate-800 border-slate-700 text-gray-100">
+      <DialogContent className="w-full max-w-lg mx-auto p-4 sm:p-6 space-y-4 bg-slate-800 border-slate-700 text-gray-100">
         <DialogHeader>
           <DialogTitle className="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
             {taskToEdit ? 'Edit Task' : 'Add a New Task'}

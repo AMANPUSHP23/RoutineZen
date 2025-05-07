@@ -36,12 +36,12 @@ const ModuleInfo = () => {
   ];
 
   return (
-    <div className="fixed top-20 right-4 z-50">
+    <div className="fixed z-[60] right-2 sm:top-20 sm:right-4 top-auto bottom-4 sm:bottom-auto">
       <Button
         variant="ghost"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-purple-600/20 hover:bg-purple-600/30 text-purple-300"
+        className="bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
       >
         <Info className="w-5 h-5" />
       </Button>
@@ -53,21 +53,21 @@ const ModuleInfo = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-0 right-0 w-80"
+            className="fixed sm:absolute top-0 right-0 w-full sm:w-80 h-full sm:h-auto max-h-screen z-[70] flex justify-end sm:justify-center"
           >
-            <Card className="bg-slate-800/90 backdrop-blur-md border-purple-500/20">
+            <Card className="bg-slate-800/90 backdrop-blur-md border-purple-500/20 h-full sm:h-auto overflow-y-auto w-full sm:w-80 max-w-full">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-xl font-bold text-purple-300">RoutineZen</CardTitle>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(false)}
-                  className="h-8 w-8 text-purple-300 hover:text-purple-200"
+                  className="h-8 w-8 text-purple-300 hover:text-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400"
                 >
                   <X className="h-4 w-4" />
                 </Button>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 p-4 sm:p-6 min-w-0">
                 {/* Modules */}
                 <div className="space-y-3">
                   {modules.map((module) => (
@@ -75,7 +75,7 @@ const ModuleInfo = () => {
                       key={module.title}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="p-3 rounded-lg bg-purple-900/20 border border-purple-500/20"
+                      className="p-3 rounded-lg bg-purple-900/20 border border-purple-500/20 min-w-0"
                     >
                       <h3 className="font-semibold text-purple-300 mb-1">{module.title}</h3>
                       <p className="text-sm text-purple-200/80 mb-2">{module.description}</p>
@@ -93,18 +93,18 @@ const ModuleInfo = () => {
 
                 {/* Developer Info */}
                 <div className="pt-4 border-t border-purple-500/20">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 mb-3">
                     <img
                       src="https://github.com/AMANPUSHP23.png"
                       alt="Aman Pushp"
-                      className="w-10 h-10 rounded-full border-2 border-purple-500"
+                      className="w-16 h-16 sm:w-10 sm:h-10 rounded-full border-2 border-purple-500"
                     />
-                    <div>
+                    <div className="text-center sm:text-left break-words max-w-full">
                       <h4 className="font-medium text-purple-300">Aman Pushp</h4>
                       <p className="text-sm text-purple-200/80">Full Stack Developer</p>
                     </div>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 justify-center sm:justify-start flex-wrap">
                     <Button
                       variant="ghost"
                       size="icon"
